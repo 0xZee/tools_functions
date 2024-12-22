@@ -23,3 +23,25 @@ to_drop = ['address1', 'address2', 'industryDisp', 'industryKey', 'companyOffice
 list_keys = ['symbol', 'currentPrice','marketCap', 'trailingPE', 'forwardPE', 'priceToSalesTrailing12Months', 'shortRatio', 'enterpriseToRevenue', 'enterpriseToEbitda', 'targetHighPrice', 'returnOnEquity' ]
 stock_data = get_stock_data(tickers_list, keys_list)
 stock_data[0]
+
+
+##
+# Create text list and metadata from stock data
+texts = [str(stock) for stock in stock_data]
+metadatas = [
+    {
+        "symbol": stock.get('symbol', 'N/A'),
+        "shortName": stock.get('shortName', 'N/A'),
+        "currentPrice": stock.get('currentPrice', 'N/A')
+    } 
+    for stock in stock_data
+]
+
+# Print example of the first few items
+print("All Texts (first 3):")
+for text in texts[:3]:
+    print(text)
+
+print("\nMetadatas (first 3):")
+for metadata in metadatas[:3]:
+    print(metadata)
